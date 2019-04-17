@@ -9,6 +9,11 @@ import fun from '@/components/select/Fun'
 import life from '@/components/select/Life'
 import digit from '@/components/select/Digit'
 import home from '@/components/select/Home'
+import myplayer from '@/components/select/myplayer'
+
+import VideoPlayer from 'vue-video-player'
+import 'video.js/dist/video-js.css'
+Vue.use(VideoPlayer)
 
 Vue.use(Router)
 Vue.use(iView)
@@ -22,6 +27,7 @@ export default new Router({
 		{path: '/fun',name: 'fun',component: fun},
 		{path: '/life',name: 'life',component: life},
 		{path: '/digit',name: 'digit',component: digit},
+		{path: '/myplayer',name: 'myplayer',component: myplayer}
 
 	]
 })

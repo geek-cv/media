@@ -6,24 +6,11 @@
     border-radius: 4px;
     overflow: hidden;
 }
-/* .layout-logo{
-    width: 100px;
-    height: 30px;
-    background: #5b6270;
-    border-radius: 3px;
-    float: left;
-    position: relative;
-    top: 15px;
-    left: 20px;
-} */
 .layout-nav{
     width: 100%;
 }
 .layout-footer-center{
     text-align: center;
-}
-.Content{
-	
 }
 </style>
 <template>
@@ -48,6 +35,9 @@
 						注册
 					</router-link>
 					</MenuItem>
+					<MenuItem name="4">
+					
+					</MenuItem>
 				</Menu>
 			</div>
 			<Content>
@@ -63,6 +53,9 @@
 					</router-link>
 					<router-link to='/App'>
 						<BreadcrumbItem>数码丨</BreadcrumbItem>
+					</router-link>
+					<router-link to='/myplayer'>
+						<BreadcrumbItem>播放器</BreadcrumbItem>
 					</router-link>
 				</Breadcrumb>
 				<Card>

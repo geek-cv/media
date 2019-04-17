@@ -28,7 +28,11 @@
 				<Col span="6">
 				<div class="display-film">
 					<img src="../../assets/img/home/小偷家族.jpg" />
-					<p>小偷家族</p>
+					<p>
+					<router-link to='/myplayer'>
+						小偷家族
+					</router-link>
+					</p>
 				</div>
 				</Col>
 				<Col span="6">
