@@ -48,17 +48,11 @@
 						注册
 					</router-link>
 					</MenuItem>
-					<MenuItem name="4">
-					<router-link to="/home">
-						<Icon type="ios-navigate"></Icon>
-						电影
-					</router-link>
-					</MenuItem>
 				</Menu>
 			</div>
 			<Content>
 				<Breadcrumb :style="{margin: '20px'}">
-					<router-link to='/home'>
+					<router-link to='/'>
 						<BreadcrumbItem>主页丨</BreadcrumbItem>
 					</router-link>
 					<router-link to='/fun'>
@@ -72,7 +66,7 @@
 					</router-link>
 				</Breadcrumb>
 				<Card>
-					<div style="min-height: 200px;">
+					<div style="min-height: 700px;">
 						<router-view></router-view>
 					</div>
 				</Card>

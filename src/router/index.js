@@ -15,13 +15,13 @@ Vue.use(iView)
 
 export default new Router({
 	routes: [
+		{path: '/',name: 'home',component: home},
 		{path: '/login',name: 'login',component: login},
 		{path: '/upload',name: 'upload',component: upload},
 		{path: '/register',name: 'register',component: register},
 		{path: '/fun',name: 'fun',component: fun},
 		{path: '/life',name: 'life',component: life},
 		{path: '/digit',name: 'digit',component: digit},
-		{path: '/home',name: 'home',component: home}
 
 	]
 })
