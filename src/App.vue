@@ -66,7 +66,7 @@
 					</router-link>
 				</Breadcrumb>
 				<Card>
-					<div style="min-height: 700px;">
+					<div style="min-height: 730px;">
 						<router-view></router-view>
 					</div>
 				</Card>
