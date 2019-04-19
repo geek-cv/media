@@ -10,9 +10,11 @@ import life from '@/components/select/Life'
 import digit from '@/components/select/Digit'
 import home from '@/components/select/Home'
 import myplayer from '@/components/select/myplayer'
+import bofang from '@/components/select/bofang'
 
 import VideoPlayer from 'vue-video-player'
 import 'video.js/dist/video-js.css'
+import 'videojs-flash'
 
 Vue.use(VideoPlayer)
 Vue.use(Router)
@@ -27,7 +29,8 @@ export default new Router({
 		{path: '/fun',name: 'fun',component: fun},
 		{path: '/life',name: 'life',component: life},
 		{path: '/digit',name: 'digit',component: digit},
-		{path: '/myplayer',name: 'myplayer',component: myplayer}
+		{path: '/myplayer',name: 'myplayer',component: myplayer},
+		{path: '/bofang',name: 'bofang',component: bofang}
 
 	]
 })

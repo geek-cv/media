@@ -12,6 +12,8 @@
   "dependencies": {
     "axios": "^0.18.0",
     "iview": "^3.4.0",
+    "videojs-contrib-hls": "^5.15.0",
+    "videojs-flash": "^2.2.0",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vue-video-player": "^5.0.2"

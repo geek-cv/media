@@ -57,6 +57,9 @@
 					<router-link to='/myplayer'>
 						<BreadcrumbItem>播放器</BreadcrumbItem>
 					</router-link>
+					<router-link to='/bofang'>
+						<BreadcrumbItem>m3u8播放</BreadcrumbItem>
+					</router-link>
 				</Breadcrumb>
 				<Card>
 					<div style="min-height: 730px;">
