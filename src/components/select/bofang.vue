@@ -1,20 +1,15 @@
 <template>
-  <div class="container">
-    <div class="player">
-      <video-player  class="video-player vjs-custom-skin"
-                     ref="videoPlayer"
-                     :playsinline="true"
-                     :options="playerOptions"
-                     @play="onPlayerPlay($event)"
-                     @pause="onPlayerPause($event)"
-      >
-      </video-player>
-    </div>
-  </div>
+	<div class="container">
+		<div class="player">
+			<video-player class="video-player vjs-custom-skin" ref="videoPlayer" :playsinline="true" :options="playerOptions"
+			 @play="onPlayerPlay($event)" @pause="onPlayerPause($event)">
+			</video-player>
+		</div>
+	</div>
 </template>
- 
+
 <script>
-import { videoPlayer } from 'vue-video-player';
+	import { videoPlayer } from 'vue-video-player';
 export default {
   data () {
     return {
@@ -29,7 +24,7 @@ export default {
         fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
         sources: [{
           type: 'application/x-mpegURL',
-          src: 'http://39.108.94.12:80/hls/test.m3u8' 
+          src: 'http://39.108.94.12:80/opt/video/vod/xiaotoujiazu.m3u8'
         }],
         poster: "poster.jpg", //你的封面地址
         width: document.documentElement.clientWidth,
@@ -53,11 +48,11 @@ export default {
   }
 }
 </script>
- 
+
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style type="text/css" scoped>
-  .container {
-    background-color: #efefef;
-    min-height: 100%;
-  }
+	.container {
+		background-color: #efefef;
+		min-height: 100%;
+	}
 </style>

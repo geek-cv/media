@@ -29,7 +29,7 @@ export default {
         fluid: true, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
         sources: [{
           type: 'rtmp/mp4',
-          src: 'rtmp://39.108.94.12/vod/小偷家族.mp4' 
+          src: 'rtmp://39.108.94.12/vod/xiaotoujiazu.mp4' 
         }],
 		techOrder: ['flash'],//改动
         poster: "poster.jpg", //你的封面地址
