@@ -24,7 +24,7 @@
 					</router-link>
 					</MenuItem>
 					<MenuItem name="2">
-					<router-link to="/upload">
+					<router-link to="http://localhost:3000/">
 						<Icon type="ios-navigate"></Icon>
 						上传
 					</router-link>
