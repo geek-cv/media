@@ -12,12 +12,12 @@ import home from '@/components/select/Home'
 import myplayer from '@/components/select/myplayer'
 import bofang from '@/components/select/bofang'
 
-import VideoPlayer from 'vue-video-player'
+import VueVideoPlayer from 'vue-video-player'
 import 'video.js/dist/video-js.css'
 import 'videojs-flash'
 import axios from 'axios'
 
-Vue.use(VideoPlayer)
+Vue.use(VueVideoPlayer)
 Vue.use(Router)
 Vue.use(iView)
 Vue.prototype.$http=axios

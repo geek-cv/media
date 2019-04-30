@@ -29,7 +29,7 @@
 				<div class="display-film">
 					<img src="../../assets/img/home/小偷家族.jpg" />
 					<p>
-					<router-link to='/myplayer'>
+					<router-link to='/bofang'>
 						小偷家族
 					</router-link>
 					</p>
