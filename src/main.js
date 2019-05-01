@@ -5,14 +5,17 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 
+import store from './store'
+
 Vue.config.productionTip = false
 Vue.prototype.$http=axios
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-   render: c=> c(App),//render会把el指定的容器中，所有的内容都清空覆盖，所以不要把路由的router-link和view直接写到el控制元素中
-  router//将路由对象挂载到vm上
+  store,
+  render: c=> c(App),//render会把el指定的容器中，所有的内容都清空覆盖，所以不要把路由的router-link和view直接写到el控制元素中
+  router,//将路由对象挂载到vm上
 })
 
 

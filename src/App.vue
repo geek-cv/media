@@ -51,7 +51,7 @@
 					<router-link to='/life'>
 						<BreadcrumbItem>日常丨</BreadcrumbItem>
 					</router-link>
-					<router-link to='/App'>
+					<router-link to='/Digit'>
 						<BreadcrumbItem>数码丨</BreadcrumbItem>
 					</router-link>
 					<router-link to='/myplayer'>
