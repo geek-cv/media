@@ -14,7 +14,7 @@
             <Button type="primary" @click="handleSubmit('formInline')">登录</Button>
 			<router-link to='/register'>
 			<Button type="primary">
-					注册注册
+					注册
 			</Button>
 			</router-link>
         </FormItem>

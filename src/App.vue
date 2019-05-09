@@ -48,7 +48,7 @@
 					<router-link to='/fun'>
 						<BreadcrumbItem>搞笑丨</BreadcrumbItem>
 					</router-link>
-					<router-link to='/life'>
+					<router-link :to="{path:'/Life',query:{url:'http://39.108.94.12/1.mp4'}}">
 						<BreadcrumbItem>日常丨</BreadcrumbItem>
 					</router-link>
 					<router-link to='/Digit'>

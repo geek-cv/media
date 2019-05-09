@@ -33,7 +33,7 @@
           playbackRates: [0.7, 1.0, 1.5, 2.0],
           sources: [{
             type: "video/mp4",
-            src: "http://39.108.94.12/1.mp4"
+            src:"http://39.108.94.12/1.mp4"
           }],
           poster: "/static/images/author.jpg",
         }
