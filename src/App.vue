@@ -24,19 +24,16 @@
 					</router-link>
 					</MenuItem>
 					<MenuItem name="2">
-					<router-link to="http://localhost:3000/">
-						<Icon type="ios-navigate"></Icon>
-						上传
-					</router-link>
-					</MenuItem>
-					<MenuItem name="3">
 					<router-link to="/register">
 						<Icon type="ios-navigate"></Icon>
 						注册
 					</router-link>
 					</MenuItem>
-					<MenuItem name="4">
-					
+					<MenuItem name="3">
+					<router-link to="/upload">
+						<Icon type="ios-navigate"></Icon>
+						上传
+					</router-link>
 					</MenuItem>
 				</Menu>
 			</div>

@@ -15,14 +15,14 @@ import bofang from '@/components/select/bofang'
 import VueVideoPlayer from 'vue-video-player'
 import 'video.js/dist/video-js.css'
 import 'videojs-flash'
-import axios from 'axios'
 
 Vue.use(VueVideoPlayer)
 Vue.use(Router)
 Vue.use(iView)
-Vue.prototype.$http=axios
 
-export default new Router({
+
+const router = new Router({
+	mode: 'history',
 	routes: [
 		{path: '/',name: 'home',component: home},
 		{path: '/login',name: 'login',component: login},
@@ -35,4 +35,7 @@ export default new Router({
 		{path: '/bofang',name: 'bofang',component: bofang}
 
 	]
-})
+});
+
+export default router;
+
