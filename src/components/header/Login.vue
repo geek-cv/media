@@ -22,7 +22,6 @@
 	</Form>
 </template>
 <script>
-	// import axios from '@/axios.js'
 	export default {
 		data() {
 			var validatePass = (rule, value, callback) => {

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "element-ui": "^2.8.2",
     "install": "^0.12.2",
     "iview": "^3.4.0",
     "jsonwebtoken": "^8.5.1",
