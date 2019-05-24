@@ -35,6 +35,13 @@
 						上传
 					</router-link>
 					</MenuItem>
+					<MenuItem name="4">
+					<router-link to="/information">
+						<Icon type="ios-navigate"></Icon>
+						用户管理
+					</router-link>
+					</MenuItem>
+					<el-button  @click="logout()">退出登录</el-button>
 				</Menu>
 			</div>
 			<Content>
@@ -45,7 +52,7 @@
 					<router-link to='/fun'>
 						<BreadcrumbItem>搞笑丨</BreadcrumbItem>
 					</router-link>
-					<router-link :to="{path:'/Life',query:{url:'http://39.108.94.12/1.mp4'}}">
+					<router-link to='/life'>
 						<BreadcrumbItem>日常丨</BreadcrumbItem>
 					</router-link>
 					<router-link to='/Digit'>
@@ -69,6 +76,23 @@
 </template>
 <script>
 	export default {
-
+		methods: {
+			logout(){
+			  //清除token
+			  this.$store.dispatch('UserLogout');
+			  if (!this.$store.state.token) {
+			    this.$router.push('/login')
+			    this.$message({
+			      type: 'success',
+			      message: '登出成功'
+			    })
+			  } else {
+			    this.$message({
+			      type: 'info',
+			      message: '登出失败'
+			    })
+			  }
+			},
+		},
 	}
 </script>

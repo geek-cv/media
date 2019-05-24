@@ -1,98 +1,96 @@
 <template>
-	<Form ref="formInline" :model="formInline" :rules="ruleInline" style="inline">
-		<FormItem prop="user">
-			<Input type="text" v-model="formInline.user" placeholder="Username">
-			<Icon type="ios-person-outline" slot="prepend"></Icon>
-			</Input>
-		</FormItem>
-		<FormItem prop="password">
-			<Input type="password" v-model="formInline.password" placeholder="Password">
-			<Icon type="ios-lock-outline" slot="prepend"></Icon>
-			</Input>
-		</FormItem>
-		<FormItem>
-			<Button type="primary" @click="handleSubmit('formInline')">登录</Button>
-			<Button type="primary" @click="handleReset('formInline')">重置</Button>
-			<router-link to='/register'>
-				<Button type="primary">
-					注册
-				</Button>
-			</router-link>
-		</FormItem>
-	</Form>
+  <div class="login">
+    <el-tabs v-model="activeName" @tab-click="handleClick">
+        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+          <el-form-item label="名称" prop="name">
+            <el-input v-model="ruleForm.name"></el-input>
+          </el-form-item>
+          <el-form-item label="密码" prop="pass">
+            <el-input type="password" v-model="ruleForm.pass" auto-complete="off"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="submitForm('ruleForm')">登录</el-button>
+            <el-button @click="resetForm('ruleForm')">重置</el-button>
+          </el-form-item>
+        </el-form>
+    </el-tabs>
+  </div>
 </template>
 <script>
-	export default {
-		data() {
-			var validatePass = (rule, value, callback) => {
-				if (value === '') {
-					callback(new Error('请输入密码'));
-				} else {
-					if (this.formInline.password !== '') {
-						this.$refs.formInline.validateField('password');
-					}
-					callback();
-				}
-			};
-			return {
-				formInline: {
-					user: '',
-					password: ''
-				},
-				ruleInline: {
-					user: [{
-						required: true,
-						message: '请输入帐号',
-						trigger: 'blur'
-					}],
-					password: [{
-						required: true,
-						message: '请输入密码',
-						validator: validatePass,
-						trigger: 'blur'
-					}, ]
-				}
-			}
-		},
-		methods: {
-			//提交表单
-			handleSubmit(name) {
-				this.$refs[name].validate((valid) => {
-					if (valid) {
-						axios.userLogin(this.formInline)
-							.then(({ data }) => {
-								//账号不存在
-								if (data.info === false) {
-									this.$message({
-										type: 'info',
-										message: '账号不存在'
-									});
-									return;
-								}
-								if (data.success) {
-									this.$message({
-										type: 'success',
-										message: '登录成功'
-									});
-									//拿到返回的token和username，并存到store
-									let token = data.token;
-									let username = data.username;
-									this.$store.dispatch('UserLogin', token);
-									this.$store.dispatch('UserName', username);
-									//跳到目标页
-									// this.$router.push('HelloWorld');
-								}
-							});
-					} else {
-						console.log('error submit!!');
-						return false;
-					}
-				});
-			},
-			//重置表单
-			handleReset(name) {
-				this.$refs[name].resetFields();
-			}
-		}
-	}
+import axios from '../../axios.js'
+export default {
+  data() {
+    var validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入密码'));
+      } else {
+        if (this.ruleForm.checkPass !== '') {
+          this.$refs.ruleForm.validateField('checkPass');
+        }
+        callback();
+      }
+    };
+    return {
+      activeName: 'first',
+      ruleForm: {
+        name: '',
+        pass: '',
+        checkPass: '',
+      },
+      rules: {
+        name: [
+          { required: true, message: '请输入您的名称', trigger: 'blur' },
+          { min: 2, max: 6, message: '长度在 2 到 6 个字符', trigger: 'blur' }
+        ],
+        pass: [
+          { required: true, validator: validatePass, trigger: 'blur' }
+        ]
+      },
+
+    };
+  },
+  methods: {
+    //重置表单
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    },
+    //提交表单
+    submitForm(formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          axios.userLogin(this.ruleForm)
+            .then(({ data }) => {
+              //账号不存在
+              if (data.info === false) {
+                this.$message({
+                  type: 'info',
+                  message: '账号不存在'
+                });
+                return;
+              }
+              if (data.success) {
+                this.$message({
+                  type: 'success',
+                  message: '登录成功'
+                });
+                //拿到返回的token和username，并存到store
+                let token = data.token;
+                let username = data.username;
+                this.$store.dispatch('UserLogin', token);
+                this.$store.dispatch('UserName', username);
+                //跳到目标页
+                this.$router.push('information');
+              }
+            });
+        } else {
+          console.log('error submit!!');
+          return false;
+        }
+      });
+    },
+  },
+}
+
 </script>
+<style>
+</style>
