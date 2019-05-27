@@ -91,6 +91,16 @@ const router = new Router({
 			name: 'adminlogin',
 			component: adminlogin
 		},
+		{
+			path: '/userinfor',
+			name: 'userinfor',
+			component: userinfor
+		},
+		{
+			path: '/alteruser',
+			name: 'alteruser',
+			component: alteruser
+		},
 	],
 });
 

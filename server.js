@@ -26,25 +26,37 @@ app.use(bodyParser());
 
 //引入数据库操作方法
 const UserController = require('./server/controller/user.js');
+const AdminController = require('./server/controller/admin.js');
 
 //checkToken作为中间件存在
 const checkToken = require('./server/token/checkToken.js');
 
-//登录
+//用户登录
 const loginRouter = new Router();
 loginRouter.post('/login', UserController.Login);
+//管理员登录
+const adminloginRouter = new Router();
+adminloginRouter.post('/adminlogin',AdminController.AdminLogin);
 
-//注册
+//用户注册
 const registerRouter = new Router();
 registerRouter.post('/register', UserController.Reg);
-
+//管理员注册
+const adminregisterRouter = new Router();
+adminregisterRouter.post('/adminregister', AdminController.AdminReg);
 //获取所有用户
 const userRouter = new Router();
 userRouter.get('/user', checkToken, UserController.GetAllUsers);
+//获取所有管理员
+const adminRouter = new Router();
+adminRouter.get('/admin', checkToken, AdminController.GetAllAdmin);
 
 //删除某个用户
 const delUserRouter = new Router();
 delUserRouter.post('/delUser', checkToken, UserController.DelUser);
+//删除某个管理员
+const delAdminRouter = new Router();
+delAdminRouter.post('/delAdmin', checkToken, AdminController.DelAdmin);
 
 //文件上传
 const uploadRouter = new Router();
@@ -61,12 +73,17 @@ uploadRouter.post('/upload', async (ctx, next) => {
   return console.log('上传成功');
 });
 
-//装载子路由
+
+//用户路由
 router.use('/api', loginRouter.routes(), loginRouter.allowedMethods());
 router.use('/api', registerRouter.routes(), registerRouter.allowedMethods());
 router.use('/api', userRouter.routes(), userRouter.allowedMethods());
 router.use('/api', delUserRouter.routes(), delUserRouter.allowedMethods());
+//文件上传
 router.use('/api', uploadRouter.routes(), uploadRouter.allowedMethods());
+//管理员路由
+router.use('/api', adminloginRouter.routes(), adminloginRouter.allowedMethods());
+router.use('/api', adminregisterRouter.routes(), adminregisterRouter.allowedMethods());
 
 //加载路由中间件
 app.use(router.routes()).use(router.allowedMethods());

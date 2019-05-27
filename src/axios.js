@@ -48,7 +48,7 @@ export default {
   userLogin(data) {
     return axios.post('/api/login', data);  
   },
-  //获取用户
+	//获取用户
   getUser() {
     return instance.get('/api/user');
   },
@@ -56,4 +56,8 @@ export default {
   delUser(data) {
     return instance.post('/api/delUser', data);
   },
+	//管理员登录
+	adminLogin(data){
+		return axios.post('/api/adminlogin',data)
+	}
 }

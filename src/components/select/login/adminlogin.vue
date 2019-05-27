@@ -1,7 +1,6 @@
 <template>
   <div class="login">
-	<h2>管理员登录</h2>
-    <el-tabs v-model="activeName" @tab-click="handleClick">
+	  <h2>管理员登录</h2>
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
           <el-form-item label="名称" prop="name">
             <el-input v-model="ruleForm.name"></el-input>
@@ -14,7 +13,6 @@
             <el-button @click="resetForm('ruleForm')">重置</el-button>
           </el-form-item>
         </el-form>
-    </el-tabs>
   </div>
 </template>
 <script>
@@ -41,7 +39,7 @@ export default {
       rules: {
         name: [
           { required: true, message: '请输入您的名称', trigger: 'blur' },
-          { min: 2, max: 6, message: '长度在 2 到 6 个字符', trigger: 'blur' }
+          { min: 2, max: 5, message: '长度在 2 到 5 个字符', trigger: 'blur' }
         ],
         pass: [
           { required: true, validator: validatePass, trigger: 'blur' }
@@ -80,7 +78,7 @@ export default {
                 this.$store.dispatch('UserLogin', token);
                 this.$store.dispatch('UserName', username);
                 //跳到目标页
-                this.$router.push('/');
+                this.$router.push('/userinfor');
               }
             });
         } else {

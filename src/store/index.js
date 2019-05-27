@@ -8,6 +8,7 @@ Vue.use(Vuex);
 const state = {
     token: window.sessionStorage.getItem('token'),
     username: '',
+	adminname:'',
     video_url:window.localStorage.getItem('video_url'),
 };
 
@@ -45,7 +46,10 @@ const actions = {
     },
     UserName({ commit }, data){
         commit('USERNAME', data);
-    }
+    },
+	AdminLogin({ commit },data){
+		commit('LOGIN',data);
+	},
 };
 
 export default new Vuex.Store({
