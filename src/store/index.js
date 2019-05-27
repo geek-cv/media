@@ -7,10 +7,15 @@ Vue.use(Vuex);
 //初始化时用sessionStore.getItem('token'),这样子刷新页面就无需重新登录
 const state = {
     token: window.sessionStorage.getItem('token'),
-    username: ''
+    username: '',
+    video_url:window.localStorage.getItem('video_url'),
 };
 
 const mutations = {
+    set_video_url: (state, data) => {
+        state.token = data;
+        window.localStorage.setItem('video_url', data);
+    },
     LOGIN: (state, data) => {
         //更改token的值
         state.token = data;
@@ -27,6 +32,9 @@ const mutations = {
         window.sessionStorage.setItem('username', data);
     }
 };
+const getters={
+    video_url:state=>{return state.video_url}
+}
 
 const actions = {
     UserLogin({ commit }, data){

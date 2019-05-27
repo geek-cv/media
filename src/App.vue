@@ -14,84 +14,90 @@
 }
 </style>
 <template>
-		<Layout>
-			<div class="layout-nav">
-				<Menu mode="horizontal" active-name="1">
-					<MenuItem name="1">
-					<router-link to="/login">
-						<Icon type="ios-navigate"></Icon>
-						登录
-					</router-link>
-					</MenuItem>
-					<MenuItem name="2">
-					<router-link to="/register">
-						<Icon type="ios-navigate"></Icon>
-						注册
-					</router-link>
-					</MenuItem>
-					<MenuItem name="3">
-					<router-link to="/upload">
-						<Icon type="ios-navigate"></Icon>
-						上传
-					</router-link>
-					</MenuItem>
-					<MenuItem name="4">
-					<router-link to="/information">
-						<Icon type="ios-navigate"></Icon>
-						用户管理
-					</router-link>
-					</MenuItem>
-					<el-button  @click="logout()">退出登录</el-button>
-				</Menu>
-			</div>
-			<Content>
-				<Breadcrumb :style="{margin: '20px'}">
-					<router-link to='/'>
-						<BreadcrumbItem>主页丨</BreadcrumbItem>
-					</router-link>
-					<router-link to='/fun'>
-						<BreadcrumbItem>搞笑丨</BreadcrumbItem>
-					</router-link>
-					<router-link to='/life'>
-						<BreadcrumbItem>日常丨</BreadcrumbItem>
-					</router-link>
-					<router-link to='/Digit'>
-						<BreadcrumbItem>数码丨</BreadcrumbItem>
-					</router-link>
-					<router-link to='/myplayer'>
-						<BreadcrumbItem>播放器</BreadcrumbItem>
-					</router-link>
-					<router-link to='/bofang'>
-						<BreadcrumbItem>m3u8播放</BreadcrumbItem>
-					</router-link>
-				</Breadcrumb>
-				<Card>
-					<div style="min-height: 730px;">
-						<router-view></router-view>
-					</div>
-				</Card>
-			</Content>
-			<Footer class="layout-footer-center">孙豪</Footer>
-		</Layout>
+	<Layout>
+		<div class="layout-nav">
+			<Menu mode="horizontal" active-name="1">
+				<MenuItem name="1">
+					<Dropdown>
+						<a href="javascript:void(0)">
+							登录
+							<Icon type="ios-arrow-down"></Icon>
+						</a>
+						<DropdownMenu slot="list">
+								<DropdownItem>
+									<router-link to="/userlogin">
+										<Icon type="ios-navigate"></Icon>
+										用户登录
+									</router-link>
+								</DropdownItem>
+								<DropdownItem>
+									<router-link to="/adminlogin">
+										<Icon type="ios-navigate"></Icon>
+										管理员登录
+									</router-link>
+								</DropdownItem>
+						</DropdownMenu>
+					</Dropdown>
+				</MenuItem>
+				<MenuItem name="2">
+				<router-link to="/register">
+					<Icon type="ios-navigate"></Icon>
+					注册
+				</router-link>
+				</MenuItem>
+				<MenuItem name="3">
+				<router-link to="/upload">
+					<Icon type="ios-navigate"></Icon>
+					上传
+				</router-link>
+				</MenuItem>
+				<MenuItem name="4">
+				</MenuItem>
+				<el-button @click="logout()">退出登录</el-button>
+			</Menu>
+		</div>
+		<Content>
+			<Breadcrumb :style="{margin: '20px'}">
+				<router-link to='/'>
+					<BreadcrumbItem>主页丨</BreadcrumbItem>
+				</router-link>
+				<router-link to='/fun'>
+					<BreadcrumbItem>电影丨</BreadcrumbItem>
+				</router-link>
+				<!-- <router-link to='/life'>
+						<BreadcrumbItem>剧集丨</BreadcrumbItem>
+					</router-link> -->
+				<router-link to='/Digit'>
+					<BreadcrumbItem>综艺丨</BreadcrumbItem>
+				</router-link>
+			</Breadcrumb>
+			<Card>
+				<div style="min-height: 730px;">
+					<router-view></router-view>
+				</div>
+			</Card>
+		</Content>
+		<Footer class="layout-footer-center">孙豪</Footer>
+	</Layout>
 </template>
 <script>
 	export default {
 		methods: {
-			logout(){
-			  //清除token
-			  this.$store.dispatch('UserLogout');
-			  if (!this.$store.state.token) {
-			    this.$router.push('/login')
-			    this.$message({
-			      type: 'success',
-			      message: '登出成功'
-			    })
-			  } else {
-			    this.$message({
-			      type: 'info',
-			      message: '登出失败'
-			    })
-			  }
+			logout() {
+				//清除token
+				this.$store.dispatch('UserLogout');
+				if (!this.$store.state.token) {
+					this.$router.push('/login')
+					this.$message({
+						type: 'success',
+						message: '登出成功'
+					})
+				} else {
+					this.$message({
+						type: 'info',
+						message: '登出失败'
+					})
+				}
 			},
 		},
 	}

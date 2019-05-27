@@ -3,16 +3,19 @@ import Router from 'vue-router'
 import store from '../store/index'
 import iView from 'iview';
 import 'iview/dist/styles/iview.css'
-import login from '@/components/header/Login'
 import upload from '@/components/header/upload'
 import register from '@/components/header/register'
-import information from '@/components/header/information'
+import userinfor from '@/components/header/userinfor'
 import fun from '@/components/select/Fun'
 import life from '@/components/select/Life'
 import digit from '@/components/select/Digit'
 import home from '@/components/select/Home'
 import myplayer from '@/components/select/myplayer'
 import bofang from '@/components/select/bofang'
+import alteruser from '@/components/select/alteruser'
+//登录路由
+import userlogin from '@/components/select/login/userlogin'
+import adminlogin from '@/components/select/login/adminlogin'
 
 import VueVideoPlayer from 'vue-video-player'
 import 'video.js/dist/video-js.css'
@@ -22,23 +25,28 @@ Vue.use(VueVideoPlayer)
 Vue.use(Router)
 Vue.use(iView)
 
-
 const router = new Router({
 	mode: 'history',
+	scrollBehavior(to, from, savedPosition) {
+		if (savedPosition) {
+			return savedPosition
+		} else {
+			return {
+				x: 0,
+				y: 0
+			}
+		}
+	},
 	routes: [{
 			path: '/',
 			name: 'home',
-			component: home
-		},
-		{
-			path: '/login',
-			name: 'login',
-			component: login
+			component: home,
 		},
 		{
 			path: '/upload',
 			name: 'upload',
 			component: upload,
+			//拦截
 			meta: {
 				requiresAuth: true
 			}
@@ -74,11 +82,16 @@ const router = new Router({
 			component: bofang
 		},
 		{
-			path: '/information',
-			name: 'information',
-			component: information
-		}
-	]
+			path: '/userlogin',
+			name: 'userlogin',
+			component: userlogin
+		},
+		{
+			path: '/adminlogin',
+			name: 'adminlogin',
+			component: adminlogin
+		},
+	],
 });
 
 //注册全局钩子用来拦截导航
@@ -92,7 +105,7 @@ router.beforeEach((to, from, next) => {
 			next();
 		} else {
 			next({
-				path: '/login',
+				path: '/userlogin',
 				query: {
 					redirect: to.fullPath
 				} // 将刚刚要去的路由path（却无权限）作为参数，方便登录成功后直接跳转到该路由
@@ -100,7 +113,7 @@ router.beforeEach((to, from, next) => {
 		}
 
 	} else {
-		next(); //如果无需token,那么随它去吧
+		next(); //无需token
 	}
 });
 export default router;

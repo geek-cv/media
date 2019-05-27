@@ -30,7 +30,7 @@ instance.interceptors.response.use(
         case 401:
           store.dispatch('UserLogout'); //可能是token过期，清除它
           router.replace({ //跳转到登录页面
-            path: 'login',
+            path: 'userlogin',
             query: { redirect: router.currentRoute.fullPath } // 将跳转的路由path作为参数，登录成功后跳转到该路由
           });
       }
@@ -55,5 +55,5 @@ export default {
   //删除用户
   delUser(data) {
     return instance.post('/api/delUser', data);
-  }
+  },
 }

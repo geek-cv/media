@@ -29,9 +29,8 @@
 				<div class="display-film">
 					<img src="../../assets/img/home/小偷家族.jpg" />
 					<p>
-					<router-link to='/bofang'>
-						小偷家族
-					</router-link>
+					<Rate disabled value='3' />
+					<a @click="change('xiaotoujiazu')">小偷家族</a>
 					</p>
 				</div>
 				</Col>
@@ -39,9 +38,9 @@
 				<div class="display-film">
 					<img src="../../assets/img/home/新喜剧之王.jpg" />
 					<p>
-					<router-link :to="{path:'/myplayer',query:{url:'http://39.108.94.12/1.mp4'}}">
-						新喜剧之王
-					</router-link>
+					<Rate disabled value='4' />
+					<a @click="change('xinxijuzhiwang')">新喜剧之王</a>
+					</p>
 					</p>
 				</div>
 				</Col>
@@ -49,9 +48,8 @@
 				<div class="display-film">
 					<img src="../../assets/img/home/疯狂的外星人.jpg" />
 					<p>
-						<router-link to='/bofang'>
-							疯狂的外星人
-						</router-link>
+						<Rate disabled value='4' />
+						<a @click="change('fengkuangdewaixingren')">疯狂的外星人</a>
 					</p>
 				</div>
 				</Col>
@@ -59,9 +57,8 @@
 				<div class="display-film">
 					<img src="../../assets/img/home/飞驰人生.jpg" />
 					<p>
-						<router-link to='/bofang'>
-							飞驰的人生
-						</router-link>
+						<Rate disabled value='4' />
+						<a @click="change('feichirensheng')">飞驰人生</a>
 					</p>
 				</div>
 				</Col>
@@ -72,9 +69,8 @@
 				<div class="display-film">
 					<img src="../../assets/img/home/绿皮书.jpg" />
 					<p>
-						<router-link to='/bofang'>
-							绿皮书
-						</router-link>
+						<Rate disabled value='4' />
+						<a @click="change('lvpishu')">绿皮书</a>
 					</p>
 				</div>
 				</Col>
@@ -82,6 +78,7 @@
 				<div class="display-film">
 					<img src="../../assets/img/home/过春天.jpg" />
 					<p>
+						<Rate disabled value='4' />
 						<router-link to='/bofang'>
 							过春天
 						</router-link>
@@ -92,6 +89,7 @@
 				<div class="display-film">
 					<img src="../../assets/img/home/阳台上.jpg" />
 					<p>
+						<Rate disabled value='4' />
 						<router-link to='/bofang'>
 							阳台上
 						</router-link>
@@ -102,9 +100,8 @@
 				<div class="display-film">
 					<img src="../../assets/img/home/飞驰人生.jpg" />
 					<p>
-						<router-link to='/bofang'>
-							飞驰的人生
-						</router-link>
+						<Rate disabled value='4' />
+						<a @click="change('feichirensheng')">飞驰人生</a>
 					</p>
 				</div>
 				</Col>
@@ -117,8 +114,20 @@
 	export default {
 		data() {
 			return {
-				value2: 0
+				value2: 0,
 			}
+		},
+		methods: {
+			change(name)
+			{
+				this.$router.push({path:'/bofang'});
+				this.$store.commit("set_video_url",name);
+				console.log(this.$store.getters.video_url)
+			}
+			
+		},
+		mounted(){
+			//window.localStorage.removeItem("video_url")
 		}
 	}
 </script>
@@ -131,8 +140,8 @@
 	.display{
 		margin-top: 20px;
 	}
-	.display-film p{
+	/* .display-film p{
 		font-size: 20px;
 		text-align: center;
-	}
+	} */
 </style>

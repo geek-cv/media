@@ -12,7 +12,7 @@ db.on('open', function(){
     console.log('数据库连接成功！');
 });
 
-//声明schema
+//声明用户schema
 const userSchema = mongoose.Schema({
     username: String,
     password: String,
@@ -22,7 +22,7 @@ const userSchema = mongoose.Schema({
 });
 //根据schema生成model
 const model = {
-    User: mongoose.model('User', userSchema)
+    User: mongoose.model('User', userSchema),
 };
 
 module.exports = model;
