@@ -3,11 +3,15 @@ import Router from 'vue-router'
 import store from '../store/index'
 import iView from 'iview';
 import 'iview/dist/styles/iview.css'
+//head
 import upload from '@/components/header/upload'
 import register from '@/components/header/register'
 import userinfor from '@/components/header/userinfor'
+import messinfor from '@/components/header/messinfor'
+import adminmanage from '@/components/header/adminmanage'
+//select
 import fun from '@/components/select/Fun'
-import life from '@/components/select/Life'
+import juji from '@/components/select/juji'
 import digit from '@/components/select/Digit'
 import home from '@/components/select/Home'
 import myplayer from '@/components/select/myplayer'
@@ -62,9 +66,9 @@ const router = new Router({
 			component: fun
 		},
 		{
-			path: '/life',
-			name: 'life',
-			component: life
+			path: '/juji',
+			name: 'juji',
+			component: juji
 		},
 		{
 			path: '/digit',
@@ -100,6 +104,16 @@ const router = new Router({
 			path: '/alteruser',
 			name: 'alteruser',
 			component: alteruser
+		},
+		{
+			path: '/adminmanage',
+			name: 'adminmanage',
+			component: adminmanage
+		},
+		{
+			path: '/messinfor',
+			name: 'messinfor',
+			component: messinfor
 		},
 	],
 });

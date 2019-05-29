@@ -30,7 +30,7 @@
 					<img src="../../assets/img/home/小偷家族.jpg" />
 					<p>
 					<Rate disabled value='3' />
-					<a @click="change('xiaotoujiazu')">小偷家族</a>
+					<a @click="change('小偷家族')">小偷家族</a>
 					</p>
 				</div>
 				</Col>
@@ -39,7 +39,7 @@
 					<img src="../../assets/img/home/新喜剧之王.jpg" />
 					<p>
 					<Rate disabled value='4' />
-					<a @click="change('xinxijuzhiwang')">新喜剧之王</a>
+					<a @click="change('新喜剧之王')">新喜剧之王</a>
 					</p>
 					</p>
 				</div>
@@ -49,7 +49,7 @@
 					<img src="../../assets/img/home/疯狂的外星人.jpg" />
 					<p>
 						<Rate disabled value='4' />
-						<a @click="change('fengkuangdewaixingren')">疯狂的外星人</a>
+						<a @click="change('疯狂的外星人')">疯狂的外星人</a>
 					</p>
 				</div>
 				</Col>
@@ -58,7 +58,7 @@
 					<img src="../../assets/img/home/飞驰人生.jpg" />
 					<p>
 						<Rate disabled value='4' />
-						<a @click="change('feichirensheng')">飞驰人生</a>
+						<a @click="change('飞驰人生')">飞驰人生</a>
 					</p>
 				</div>
 				</Col>
@@ -70,7 +70,7 @@
 					<img src="../../assets/img/home/绿皮书.jpg" />
 					<p>
 						<Rate disabled value='4' />
-						<a @click="change('lvpishu')">绿皮书</a>
+						<a @click="change('绿皮书')">绿皮书</a>
 					</p>
 				</div>
 				</Col>

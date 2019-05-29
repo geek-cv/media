@@ -64,16 +64,16 @@
 				<router-link to='/fun'>
 					<BreadcrumbItem>电影丨</BreadcrumbItem>
 				</router-link>
-				<!-- <router-link to='/life'>
+				<router-link to='/juji'>
 						<BreadcrumbItem>剧集丨</BreadcrumbItem>
-					</router-link> -->
+					</router-link>
 				<router-link to='/Digit'>
 					<BreadcrumbItem>综艺丨</BreadcrumbItem>
 				</router-link>
 			</Breadcrumb>
 			<Card>
 				<div style="min-height: 730px;">
-					<router-view></router-view>
+					<router-view v-if="isRouterAlive"></router-view>
 				</div>
 			</Card>
 		</Content>

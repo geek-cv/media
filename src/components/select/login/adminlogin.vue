@@ -78,7 +78,7 @@ export default {
                 this.$store.dispatch('UserLogin', token);
                 this.$store.dispatch('UserName', username);
                 //跳到目标页
-                this.$router.push('/userinfor');
+                this.$router.push('/adminmanage');
               }
             });
         } else {

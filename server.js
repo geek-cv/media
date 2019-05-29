@@ -1,17 +1,29 @@
 const Koa = require('koa');
 const app = new Koa();
-//文件上传
-const fs = require('fs');
-const path =require('path')
-
 
 //router
 const Router = require('koa-router');
 
 //父路由
 const router = new Router();
-
 //文件上传配置
+const cors = require('koa2-cors');
+
+// 具体参数我们在后面进行解释
+app.use(cors({
+    origin: function (ctx) {
+        if (ctx.url === '/test') {
+            return "*"; // 允许来自所有域名请求
+        }
+        return 'http://localhost:8080'; 
+    },
+    exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
+    maxAge: 5,
+    credentials: true,
+    allowMethods: ['GET', 'POST', 'DELETE'],
+    allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
+}))
+
 const koabody = require('koa-body');
 app.use(koabody({
 	multipart: true,
@@ -23,40 +35,6 @@ app.use(koabody({
 //bodyparser:该中间件用于post请求的数据
 const bodyParser = require('koa-bodyparser');
 app.use(bodyParser());
-
-//引入数据库操作方法
-const UserController = require('./server/controller/user.js');
-const AdminController = require('./server/controller/admin.js');
-
-//checkToken作为中间件存在
-const checkToken = require('./server/token/checkToken.js');
-
-//用户登录
-const loginRouter = new Router();
-loginRouter.post('/login', UserController.Login);
-//管理员登录
-const adminloginRouter = new Router();
-adminloginRouter.post('/adminlogin',AdminController.AdminLogin);
-
-//用户注册
-const registerRouter = new Router();
-registerRouter.post('/register', UserController.Reg);
-//管理员注册
-const adminregisterRouter = new Router();
-adminregisterRouter.post('/adminregister', AdminController.AdminReg);
-//获取所有用户
-const userRouter = new Router();
-userRouter.get('/user', checkToken, UserController.GetAllUsers);
-//获取所有管理员
-const adminRouter = new Router();
-adminRouter.get('/admin', checkToken, AdminController.GetAllAdmin);
-
-//删除某个用户
-const delUserRouter = new Router();
-delUserRouter.post('/delUser', checkToken, UserController.DelUser);
-//删除某个管理员
-const delAdminRouter = new Router();
-delAdminRouter.post('/delAdmin', checkToken, AdminController.DelAdmin);
 
 //文件上传
 const uploadRouter = new Router();
@@ -73,21 +51,49 @@ uploadRouter.post('/upload', async (ctx, next) => {
   return console.log('上传成功');
 });
 
+//引入数据库操作方法
+const UserController = require('./server/controller/user.js');
+const MessController = require('./server/controller/message.js');
 
-//用户路由
-router.use('/api', loginRouter.routes(), loginRouter.allowedMethods());
-router.use('/api', registerRouter.routes(), registerRouter.allowedMethods());
-router.use('/api', userRouter.routes(), userRouter.allowedMethods());
-router.use('/api', delUserRouter.routes(), delUserRouter.allowedMethods());
+//checkToken作为中间件存在
+const checkToken = require('./server/token/checkToken.js');
+
+//登录
+const loginRouter = new Router();
+loginRouter.post('/login', UserController.Login);
+//注册
+const registerRouter = new Router();
+registerRouter.post('/register', UserController.Reg);
+
+//获取所有用户
+const userRouter = new Router();
+userRouter.get('/user', checkToken, UserController.GetAllUsers);
+//删除某个用户
+const delUserRouter = new Router();
+delUserRouter.post('/delUser', checkToken, UserController.DelUser);
+
+//新增评论
+const addMessRouter = new Router();
+addMessRouter.post('/addMess',MessController.addMess);
+//显示所有评论
+const getAllMessRouter = new Router();
+getAllMessRouter.get('/getAllMess',MessController.getAllMess)
+
+//装载用户路由
+router.use('/api',loginRouter.routes(),loginRouter.allowedMethods());
+router.use('/api',registerRouter.routes(),registerRouter.allowedMethods());
+router.use('/api',userRouter.routes(),userRouter.allowedMethods());
+router.use('/api',delUserRouter.routes(),delUserRouter.allowedMethods());
 //文件上传
 router.use('/api', uploadRouter.routes(), uploadRouter.allowedMethods());
-//管理员路由
-router.use('/api', adminloginRouter.routes(), adminloginRouter.allowedMethods());
-router.use('/api', adminregisterRouter.routes(), adminregisterRouter.allowedMethods());
+//装载用户评论
+router.use('/api', addMessRouter.routes(), addMessRouter.allowedMethods());
+router.use('/api', getAllMessRouter.routes(), getAllMessRouter.allowedMethods());
 
 //加载路由中间件
 app.use(router.routes()).use(router.allowedMethods());
 
 app.listen(8888, () => {
-	console.log('The server is running at http://localhost:' + 8888);
+    console.log('The server is running at http://localhost:' + 8888);
 });
+

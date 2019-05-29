@@ -56,8 +56,12 @@ export default {
   delUser(data) {
     return instance.post('/api/delUser', data);
   },
-	//管理员登录
-	adminLogin(data){
-		return axios.post('/api/adminlogin',data)
-	}
+  //新增评论
+  addMess(data){
+    return  instance.post('/api/addMess',data);
+  },
+  //显示评论
+  getAllMess(){
+    return instance.get('/api/getAllMess')
+  }
 }
