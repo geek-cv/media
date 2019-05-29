@@ -25,13 +25,11 @@
         <el-table :data="tableData" style="width:100%" height="300">
           <!-- <el-table-column prop="_id" label="id" width="180"></el-table-column> -->
           <el-table-column prop="message" label="热门评论" width="180"></el-table-column>
-          <el-table-column prop="messname" label="影片名字" width="180"></el-table-column>
+          <!-- <el-table-column prop="messname" label="影片名字" width="180"></el-table-column> -->
+          <el-table-column prop="create_time" label="时间" width="180"></el-table-column>
         </el-table>
         <input type="text" value="评论" v-model="mess2">
-        <button @click="submit()">评论</button>
-        <div>
-
-        </div>
+        <button @click="submit">评论</button>
       </div>
     </div>
     <div class="footer"></div>
@@ -43,6 +41,7 @@ import axios from "../../axios";
 // Similarly, you can also introduce the plugin resource pack you want to use within the component
 // import 'some-videojs-plugin'
 export default {
+  // inject: ["reload"],
   data() {
     return {
       value6: "",
@@ -50,9 +49,11 @@ export default {
         {
           _id: "",
           message: "",
-          messname:""
+          messname: "",
+          create_time:""
         }
       ],
+      mess2:"",
       url: window.localStorage.getItem("video_url"),
       starvalue: "",
       message: "",
@@ -76,21 +77,27 @@ export default {
     };
   },
   mounted() {
-    console.log("this is current player instance object", this.player);
-    console.log(this.sources[0].src);
+    // console.log("this is current player instance object", this.player);
+    // console.log(this.sources[0].src);
+    self =this 
+    this.updateAllMess()
   },
   computed: {
     player() {
       return this.$refs.videoPlayer.player;
     }
   },
-  created() {
-    axios.getAllMess().then(response => {
-      //成功了就把data.result里的数据放入messages在页面展示
-      this.tableData = response.data.result;
-    });
-  },
+  created() {},
   methods: {
+    updateAllMess() {
+      return axios.getAllMess().then(response => {
+        //成功了就把data.result里的数据放入messages在页面展示
+        console.log(response.data.result)
+
+        this.tableData=response.data.result;
+
+      });
+    },
     // listen event
     onPlayerPlay(player) {
       // console.log('player play!', player)
@@ -119,11 +126,13 @@ export default {
       axios
         .addMess(data2)
         .then(function(response) {
-          console.log(response);
+         self.updateAllMess()
+        self.mess2=''
         })
         .catch(function(error) {
           console.log(error);
         });
+      // this.reload();
     }
   }
 };

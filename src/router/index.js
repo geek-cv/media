@@ -10,9 +10,9 @@ import userinfor from '@/components/header/userinfor'
 import messinfor from '@/components/header/messinfor'
 import adminmanage from '@/components/header/adminmanage'
 //select
-import fun from '@/components/select/Fun'
+import dianying from '@/components/select/dianying'
 import juji from '@/components/select/juji'
-import digit from '@/components/select/Digit'
+import zongyi from '@/components/select/zongyi'
 import home from '@/components/select/Home'
 import myplayer from '@/components/select/myplayer'
 import bofang from '@/components/select/bofang'
@@ -61,9 +61,9 @@ const router = new Router({
 			component: register
 		},
 		{
-			path: '/fun',
-			name: 'fun',
-			component: fun
+			path: '/dianying',
+			name: 'dianying',
+			component: dianying
 		},
 		{
 			path: '/juji',
@@ -71,9 +71,9 @@ const router = new Router({
 			component: juji
 		},
 		{
-			path: '/digit',
-			name: 'digit',
-			component: digit
+			path: '/zongyi',
+			name: 'zongyi',
+			component: zongyi
 		},
 		{
 			path: '/myplayer',

@@ -24,11 +24,19 @@ const userSchema = mongoose.Schema({
 const messageSchema = mongoose.Schema({
     messname: String,
     message: String,
-})
+    create_time:String
+});
+//收藏
+const collectSchema = mongoose.Schema({
+    username: String,
+    videoname:String,
+    create_time:String
+});
 //根据schema生成model
 const model = {
     User: mongoose.model('User', userSchema),
-    Message: mongoose.model('Message',messageSchema)
+    Message: mongoose.model('Message',messageSchema),
+    collect: mongoose.model('collect',messageSchema),
 };
 
 module.exports = model;

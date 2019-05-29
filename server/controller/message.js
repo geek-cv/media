@@ -1,4 +1,6 @@
 const Message = require('../db.js').Message;
+const  moment = require('moment');
+
 
 //数据库操作
 //新增评论
@@ -6,6 +8,7 @@ const addMess = async(ctx) => {
   let mess = new Message({
     messname: ctx.request.body.name,
     message: ctx.request.body.mess,
+    create_time:moment().format('YYYY-MM-DD HH:mm:ss'),
   });
   await new Promise((resolve, reject) => {
     mess.save((err) => {
@@ -40,7 +43,7 @@ const getAllMess = async(ctx) => {
   ctx.status = 200;
   ctx.body = {
     succsess: '成功',
-    result: doc
+    result: doc.reverse()
   };
 };
 
