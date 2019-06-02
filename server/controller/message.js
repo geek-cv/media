@@ -18,7 +18,7 @@ const addMess = async(ctx) => {
       resolve();
     });
   });
-  console.log('增加成功');
+  console.log('增加评论成功');
     ctx.status = 200;
     ctx.body = {
       success: true

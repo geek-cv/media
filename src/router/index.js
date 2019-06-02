@@ -9,17 +9,21 @@ import register from '@/components/header/register'
 import userinfor from '@/components/header/userinfor'
 import messinfor from '@/components/header/messinfor'
 import adminmanage from '@/components/header/adminmanage'
+import liuyanban from '@/components/header/liuyanban'
+import collect from '@/components/header/collect'
 //select
 import dianying from '@/components/select/dianying'
 import juji from '@/components/select/juji'
 import zongyi from '@/components/select/zongyi'
 import home from '@/components/select/Home'
 import myplayer from '@/components/select/myplayer'
-import bofang from '@/components/select/bofang'
 import alteruser from '@/components/select/alteruser'
 //登录路由
 import userlogin from '@/components/select/login/userlogin'
 import adminlogin from '@/components/select/login/adminlogin'
+//播放
+import bofang from '@/components/bofang/bofang'
+import sidebofang from '@/components/bofang/sidebofang'
 
 import VueVideoPlayer from 'vue-video-player'
 import 'video.js/dist/video-js.css'
@@ -86,6 +90,11 @@ const router = new Router({
 			component: bofang
 		},
 		{
+			path: '/sidebofang',
+			name: 'sidebofang',
+			component: sidebofang
+		},
+		{
 			path: '/userlogin',
 			name: 'userlogin',
 			component: userlogin
@@ -114,6 +123,16 @@ const router = new Router({
 			path: '/messinfor',
 			name: 'messinfor',
 			component: messinfor
+		},
+		{
+			path: '/liuyanban',
+			name: 'liuyanban',
+			component: liuyanban
+		},
+		{
+			path: '/collect',
+			name: 'collect',
+			component: collect
 		},
 	],
 });

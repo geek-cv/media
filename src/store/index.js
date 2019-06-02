@@ -7,8 +7,8 @@ Vue.use(Vuex);
 //初始化时用sessionStore.getItem('token'),这样子刷新页面就无需重新登录
 const state = {
     token: window.sessionStorage.getItem('token'),
-    username: '',
-	adminname:'',
+    username: window.sessionStorage.getItem('username'),
+	adminname: window.sessionStorage.getItem('adminname'),
     video_url:window.localStorage.getItem('video_url'),
 };
 
@@ -31,6 +31,11 @@ const mutations = {
         //把用户名存起来
         state.username = data;
         window.sessionStorage.setItem('username', data);
+    },
+    AdminLOGIN:(state,data) => {
+        //把管理员存起来
+        state.adminname = data;
+        window.sessionStorage.setItem('adminname', data);
     }
 };
 const getters={
@@ -48,8 +53,12 @@ const actions = {
         commit('USERNAME', data);
     },
 	AdminLogin({ commit },data){
-		commit('LOGIN',data);
-	},
+		commit('AdminLOGIN',data);
+    },
+    AdminName({ commit }, data){
+        commit('AdminName', data);
+    },
+    
 };
 
 export default new Vuex.Store({

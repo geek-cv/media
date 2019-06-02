@@ -1,7 +1,7 @@
 <template>
   <div class="login">
 	  <h2>管理员登录</h2>
-        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" style="width:400px" label-width="100px" class="demo-ruleForm">
           <el-form-item label="名称" prop="name">
             <el-input v-model="ruleForm.name"></el-input>
           </el-form-item>
@@ -39,7 +39,7 @@ export default {
       rules: {
         name: [
           { required: true, message: '请输入您的名称', trigger: 'blur' },
-          { min: 2, max: 5, message: '长度在 2 到 5 个字符', trigger: 'blur' }
+          { min: 2, max: 6, message: '长度在 2 到 6 个字符', trigger: 'blur' }
         ],
         pass: [
           { required: true, validator: validatePass, trigger: 'blur' }
@@ -49,6 +49,8 @@ export default {
     };
   },
   methods: {
+    //选项卡切换
+    handleClick(tab, event) {},
     //重置表单
     resetForm(formName) {
       this.$refs[formName].resetFields();

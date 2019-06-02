@@ -3,13 +3,15 @@ const app = new Koa();
 
 //router
 const Router = require('koa-router');
-
+//文件上传配置
+const fs = require('fs');
+const path = require('path');
 //父路由
 const router = new Router();
-//文件上传配置
+
 const cors = require('koa2-cors');
 
-// 具体参数我们在后面进行解释
+// 具体参数
 app.use(cors({
     origin: function (ctx) {
         if (ctx.url === '/test') {
@@ -53,6 +55,7 @@ uploadRouter.post('/upload', async (ctx, next) => {
 
 //引入数据库操作方法
 const UserController = require('./server/controller/user.js');
+const AdminController = require('./server/controller/admin.js');
 const MessController = require('./server/controller/message.js');
 
 //checkToken作为中间件存在
@@ -64,13 +67,22 @@ loginRouter.post('/login', UserController.Login);
 //注册
 const registerRouter = new Router();
 registerRouter.post('/register', UserController.Reg);
-
 //获取所有用户
 const userRouter = new Router();
 userRouter.get('/user', checkToken, UserController.GetAllUsers);
 //删除某个用户
 const delUserRouter = new Router();
 delUserRouter.post('/delUser', checkToken, UserController.DelUser);
+
+//管理员登录
+const adminloginRouter = new Router();
+adminloginRouter.post('/adminlogin', AdminController.adminLogin);
+//注册管理员
+const adminregisterRouter = new Router();
+adminregisterRouter.post('/adminregister', AdminController.adminReg);
+//新增收藏
+const addCollectRouter = new Router();
+addCollectRouter.post('/addCollect',  UserController.addCollect);
 
 //新增评论
 const addMessRouter = new Router();
@@ -84,9 +96,13 @@ router.use('/api',loginRouter.routes(),loginRouter.allowedMethods());
 router.use('/api',registerRouter.routes(),registerRouter.allowedMethods());
 router.use('/api',userRouter.routes(),userRouter.allowedMethods());
 router.use('/api',delUserRouter.routes(),delUserRouter.allowedMethods());
+router.use('/api',addCollectRouter.routes(),addCollectRouter.allowedMethods());
+//装载管理员路由
+router.use('/api',adminloginRouter.routes(),adminloginRouter.allowedMethods());
+router.use('/api',adminregisterRouter.routes(),adminregisterRouter.allowedMethods());
 //文件上传
 router.use('/api', uploadRouter.routes(), uploadRouter.allowedMethods());
-//装载用户评论
+//装载评论
 router.use('/api', addMessRouter.routes(), addMessRouter.allowedMethods());
 router.use('/api', getAllMessRouter.routes(), getAllMessRouter.allowedMethods());
 

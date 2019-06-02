@@ -90,6 +90,8 @@ const Login = async(ctx) => {
 const Reg = async(ctx) => {
   let user = new User({
     username: ctx.request.body.name,
+    address:ctx.request.body.address,
+    sex:ctx.request.body.sex,
     password: sha1(ctx.request.body.pass), //加密
     token: createToken(this.username) //创建token并存入数据库
   });
@@ -142,10 +144,32 @@ const DelUser = async(ctx) => {
     success: '删除成功'
   };
 };
+//收藏
+//新增评论
+const addCollect = async(ctx) => {
+  let user = new User({
+    username: ctx.request.body.name,
+    video_name: ctx.request.body.videoname,
+  });
+  await new Promise((resolve, reject) => {
+    user.save((err) => {
+      if (err) {
+        reject(err);
+      }
+      resolve();
+    });
+  });
+  console.log('收藏成功');
+    ctx.status = 200;
+    ctx.body = {
+      success: true
+    }
+};
 
 module.exports = {
   Login,
   Reg,
   GetAllUsers,
-  DelUser
+  DelUser,
+  addCollect
 };

@@ -1,7 +1,7 @@
 <template>
   <div class="login">
 	  <h2>用户登录</h2>
-        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+        <el-form :model="ruleForm" :rules="rules" ref="ruleForm" style="width:400px" label-width="100px" class="demo-ruleForm">
           <el-form-item label="名称" prop="name">
             <el-input v-model="ruleForm.name"></el-input>
           </el-form-item>

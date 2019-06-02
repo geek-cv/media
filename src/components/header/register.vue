@@ -1,8 +1,24 @@
  <template>
-  <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+  <el-form
+    :model="ruleForm"
+    :rules="rules"
+    ref="ruleForm"
+    label-width="100px"
+    class="demo-ruleForm"
+    style="width:500px"
+  >
     <el-form-item label="名称" prop="name">
       <el-input v-model="ruleForm.name"></el-input>
     </el-form-item>
+    <el-form-item label="地址" prop="address">
+      <el-input v-model="ruleForm.address"></el-input>
+    </el-form-item>
+    <el-form-item label="性别">
+    <el-radio-group v-model="ruleForm.sex" size="medium">
+      <el-radio border label="男"></el-radio>
+      <el-radio border label="女"></el-radio>
+    </el-radio-group>
+  </el-form-item>
     <el-form-item label="密码" prop="pass">
       <el-input type="password" v-model="ruleForm.pass" auto-complete="off"></el-input>
     </el-form-item>
@@ -16,69 +32,70 @@
   </el-form>
 </template>
 <script>
-import axios from '../../axios.js'
+import axios from "../../axios.js";
 export default {
   data() {
     var validatePass = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请输入密码'));
+      if (value === "") {
+        callback(new Error("请输入密码"));
       } else {
-        if (this.ruleForm.checkPass !== '') {
-          this.$refs.ruleForm.validateField('checkPass');
+        if (this.ruleForm.checkPass !== "") {
+          this.$refs.ruleForm.validateField("checkPass");
         }
         callback();
       }
     };
     var validatePass2 = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请再次输入密码'));
+      if (value === "") {
+        callback(new Error("请再次输入密码"));
       } else if (value !== this.ruleForm.pass) {
-        callback(new Error('两次输入密码不一致!'));
+        callback(new Error("两次输入密码不一致!"));
       } else {
         callback();
       }
     };
     return {
-      activeName: 'second',
+      activeName: "second",
       ruleForm: {
-        name: '',
-        pass: '',
-        checkPass: '',
+        name: "",
+        address:"",
+        sex:"",
+        pass: "",
+        checkPass: "",
+        
       },
       rules: {
         name: [
-          { required: true, message: '请输入您的名称', trigger: 'blur' },
-          { min: 2, max: 6, message: '长度在 2 到 6 个字符', trigger: 'blur' }
+          { required: true, message: "请输入您的名称", trigger: "blur" },
+          { min: 2, max: 6, message: "长度在 2 到 6 个字符", trigger: "blur" }
         ],
-        pass: [
-          { required: true, validator: validatePass, trigger: 'blur' }
-        ],
+        pass: [{ required: true, validator: validatePass, trigger: "blur" }],
         checkPass: [
-          { required: true, validator: validatePass2, trigger: 'blur' }
-        ],
+          { required: true, validator: validatePass2, trigger: "blur" }
+        ]
       }
     };
   },
   methods: {
     submitForm(formName) {
-      this.$refs[formName].validate((valid) => {
+      this.$refs[formName].validate(valid => {
         if (valid) {
-          axios.userRegister(this.ruleForm)
-            .then(({ data }) => {
-              if (data.success) {
-                this.$message({
-                  type: 'success',
-                  message: '注册成功'
-                });
-              } else {
-                this.$message({
-                  type: 'info',
-                  message: '用户名已经存在'
-                });
-              }
-            })
+          axios.userRegister(this.ruleForm).then(({ data }) => {
+            if (data.success) {
+              this.$message({
+                type: "success",
+                message: "注册成功"
+              });
+               this.$router.push('/');
+            } else {
+              this.$message({
+                type: "info",
+                message: "用户名已经存在"
+              });
+            }
+          });
         } else {
-          console.log('error submit!!');
+          console.log("error submit!!");
           return false;
         }
       });
@@ -87,6 +104,5 @@ export default {
       this.$refs[formName].resetFields();
     }
   }
-}
-
+};
 </script>

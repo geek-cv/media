@@ -14,7 +14,6 @@
 <script>
 import axios from '../../axios.js'
 export default {
-  name: 'HelloWorld',
   data () {
     return {
       users:''

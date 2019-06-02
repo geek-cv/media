@@ -78,7 +78,7 @@
             <img src="../../assets/img/home/过春天.jpg">
             <p>
               <Rate disabled value="4"/>
-              <router-link to="/bofang">过春天</router-link>
+               <a @click="change('guocuntian')">过春天</a>
             </p>
           </div>
         </Col>
@@ -87,16 +87,16 @@
             <img src="../../assets/img/home/阳台上.jpg">
             <p>
               <Rate disabled value="4"/>
-              <router-link to="/bofang">阳台上</router-link>
+                <a @click="change('yangtaishang')">阳台上</a>
             </p>
           </div>
         </Col>
         <Col span="6">
           <div class="display-film">
-            <img src="../../assets/img/home/飞驰人生.jpg">
+            <img src="../../assets/img/home/大鱼海棠.jpg">
             <p>
               <Rate disabled value="4"/>
-              <a @click="change('feichirensheng')">飞驰人生</a>
+              <a @click="change('dayuhaitang')">大鱼海棠</a>
             </p>
           </div>
         </Col>

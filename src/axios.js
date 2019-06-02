@@ -63,5 +63,14 @@ export default {
   //显示评论
   getAllMess(){
     return instance.get('/api/getAllMess')
+  },
+  //收藏
+  //管理员登录
+  adminLogin(data){
+    return axios.post('/api/adminlogin', data);  
+  },
+  //管理员注册
+  adminRegister(data){
+    return axios.post('/api/adminregister', data);  
   }
 }

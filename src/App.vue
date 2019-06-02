@@ -48,7 +48,17 @@
               <Icon type="ios-navigate"></Icon>上传
             </router-link>
           </MenuItem>
-          <MenuItem name="4"></MenuItem>
+           <MenuItem name="4">
+            <router-link to="/collect">
+              <Icon type="ios-navigate"></Icon>收藏
+            </router-link>
+          </MenuItem>
+          <MenuItem name="5">
+            <router-link to="/liuyanban">
+              <Icon type="ios-navigate"></Icon>留言板
+            </router-link>
+          </MenuItem>
+          <MenuItem name="5"></MenuItem>
           <el-button @click="logout()">退出登录</el-button>
         </Menu>
       </div>
@@ -68,7 +78,7 @@
           </router-link>
         </Breadcrumb>
         <Card>
-          <div style="min-height: 730px;">
+          <div style="min-height: 600px;">
             <!-- <router-view v-if="isRouterAlive"></router-view> -->
 			<router-view ></router-view>
           </div>
@@ -81,14 +91,14 @@
 <script>
 export default {
   name: "App",
-//   provide() {
-//     return {
-//       reload: this.reload
-//     };
-//   },
+  provide() {
+    return {
+      reload: this.reload
+    };
+  },
   data() {
     return {
-    //   isRouterAlive: true
+      isRouterAlive: true
     };
   },
   methods: {
@@ -108,12 +118,12 @@ export default {
         });
       }
     },
-    // reload() {
-    //   this.isRouterAlive = false;
-    //   this.$nextTick(function() {
-    //     this.isRouterAlive = true;
-    //   })
-    // }
+    reload() {
+      this.isRouterAlive = false;
+      this.$nextTick(function() {
+        this.isRouterAlive = true;
+      })
+    }
   },
   components:{
 
