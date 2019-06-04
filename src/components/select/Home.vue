@@ -36,7 +36,7 @@
         </Col>
         <Col span="6">
           <div class="display-film">
-            <img src="../../assets/img/home/新喜剧之王.jpg">
+            //<img src="../../assets/img/home/新喜剧之王.jpg">
             <p>
               <Rate disabled value="4"/>
               <a @click="change('xinxijuzhiwang')">新喜剧之王</a>
@@ -57,7 +57,7 @@
             <img src="../../assets/img/home/飞驰人生.jpg">
             <p>
               <Rate disabled value="4"/>
-              <a @click="change('feichirensheng')">飞驰人生</a>
+              <router-link to="/uploadbofang">飞驰人生</router-link>
             </p>
           </div>
         </Col>

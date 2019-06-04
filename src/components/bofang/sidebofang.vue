@@ -1,4 +1,4 @@
-<template>
+<template slot-scope="scope">
   <div class="display">
     <div class="player">
       <video-player
@@ -39,9 +39,9 @@
           <el-table-column label="选集" width="200" prop="name">
           </el-table-column>
            <el-table-column label="操作" width="100">
-               <el-button>
-                   播放
-               </el-button>
+              <template slot-scope="scope">
+            <el-button @click="change(scope.$index)"  type="danger" size="small">播放</el-button>
+          </template>
           </el-table-column>
       </el-table>
     </div>
@@ -51,6 +51,7 @@
 
 <script>
 import axios from "../../axios";
+import { constants } from 'crypto';
 // Similarly, you can also introduce the plugin resource pack you want to use within the component
 // import 'some-videojs-plugin'
 export default {
@@ -58,18 +59,22 @@ export default {
   data() {
     return {
       value6: "",
+      tableData:[],
       tableData1: [
         {
          id: "1",
          name:"《仙剑奇侠传一》上",
+         url:"xianjian1shang"
         },
         {
          id: "2",
          name:"《仙剑奇侠传一》下",
+         url:"xianjian1xia"
         },
         {
           id: "3",
          name:"《仙剑奇侠传三》",
+         url:"xianjian1"
         }
       ],
       mess2: "",
@@ -99,6 +104,7 @@ export default {
     // console.log("this is current player instance object", this.player);
     // console.log(this.sources[0].src);
     self = this;
+
     this.updateAllMess();
   },
   computed: {
@@ -106,8 +112,11 @@ export default {
       return this.$refs.videoPlayer.player;
     }
   },
-  created() {},
+  created() {
+    self =this
+  },
   methods: {
+
     updateAllMess() {
       return axios.getAllMess().then(response => {
         //成功了就把data.result里的数据放入messages在页面展示
@@ -166,12 +175,15 @@ export default {
           console.log(error);
         });
     },
-    change(name) {
+    change(index) {
       //this.$router.push({path:'/bofang'});
       //   this.reload();
-      this.$router.push({ path: "/bofang" }); //测试跳转页面是否刷新
-      this.$store.commit("set_video_url", name);
-      console.log(this.$store.getters.video_url);
+      console.log(self.tableData1)
+      //测试跳转页面是否刷新
+      // this.$store.commit("set_video_url", tableData1[index].url);
+      window.localStorage.setItem("video_url",self.tableData1[index].url)
+      // this.$router.push({ path: "/sidebofang" }); 
+      // console.log(this.$store.getters.video_url);
       location.reload();
     }
   }

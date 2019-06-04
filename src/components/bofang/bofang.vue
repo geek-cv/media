@@ -1,4 +1,4 @@
-<template>
+<template lang="">
   <div class="display">
     <div class="player">
       <video-player
@@ -150,16 +150,19 @@ export default {
     },
     collect() {
       let data3 = {
-        name: window.localStorage.getItem("username"),
+        name: window.sessionStorage.getItem("username"),
         videoname: window.localStorage.getItem("video_url")
       };
       axios
         .addCollect(data3)
-        .then(function(response) {
-          console.log(response);
+        .then((response) => {
+          this.$message({
+            message: '收藏成功',
+            type: 'success'
+          });
         })
-        .catch(function(response) {
-          console.log(response);
+        .catch((error) => {
+          console.log(error);
         });
     },
     // listen event

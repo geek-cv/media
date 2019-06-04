@@ -10,15 +10,18 @@
 </script>
  -->
  <template>
+<div>
+
     <Upload
         multiple
         type="drag"
-        action="http://localhost:8080/api/upload">
+        action="http://localhost:8888/api/upload">
         <div style="padding: 20px 0">
             <Icon type="ios-cloud-upload" size="52" style="color: #3399ff"></Icon>
             <p>Click or drag files here to upload</p>
         </div>
     </Upload>
+    </div>
 </template>
 <script>
     export default {

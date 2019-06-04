@@ -10,8 +10,6 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.prototype.$http= axios
 
-
-
 Vue.use(ElementUI)
 
 Vue.config.productionTip = false

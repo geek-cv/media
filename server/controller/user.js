@@ -6,7 +6,8 @@ const objectIdToTimestamp = require('objectid-to-timestamp');
 const sha1 = require('sha1');
 //createToken
 const createToken = require('../token/createToken.js');
-
+const db = require('monk')('localhost/media');
+const users = db.get('users');
 //数据库的操作
 //根据用户名查找用户
 const findUser = (username) => {
@@ -32,15 +33,15 @@ const findAllUsers = () => {
 };
 //删除某个用户
 const delUser = function(id) {
-  return new Promise((resolve, reject) => {
-    User.findOneAndRemove({ _id: id }, err => {
-      if (err) {
-        reject(err);
-      }
-      console.log('删除用户成功');
-      resolve();
-    });
-  });
+  // return new Promise((resolve, reject) => {
+  //   User.findOneAndRemove({ _id: id }, err => {
+  //     if (err) {
+  //       reject(err);
+  //     }
+  //     console.log('删除用户成功');
+  //     resolve();
+  //   });
+  // });
 };
 
 //登录
@@ -145,7 +146,7 @@ const DelUser = async(ctx) => {
   };
 };
 //收藏
-//新增评论
+//新增收藏
 const addCollect = async(ctx) => {
   let user = new User({
     username: ctx.request.body.name,
@@ -166,10 +167,33 @@ const addCollect = async(ctx) => {
     }
 };
 
+
+
+const getUsers = async(ctx) => {
+
+  let data=await users.find()
+  //console.log(data)
+  ctx.response.body=data
+}
+
+const delUsers= async(ctx) => {
+
+  let {token,username}= ctx.request.body
+  //console.log(ctx.request.body)
+  await users.remove({"username":username,"token":token})
+  ctx.status = 200;
+  ctx.body = {
+    success: true
+  }
+}
+
+
+
 module.exports = {
   Login,
   Reg,
   GetAllUsers,
-  DelUser,
-  addCollect
+  delUsers,
+  addCollect,
+  getUsers,
 };

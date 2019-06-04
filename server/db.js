@@ -37,11 +37,24 @@ const messageSchema = mongoose.Schema({
     message: String,
     create_time:String
 });
+//留言板
+const bbsSchema = mongoose.Schema({
+    create_time:Date,
+    message:String,
+    username:String
+});
+//视频
+const videoScheme = mongoose.Schema({
+    video_name:String,
+    video_url:String
+})
 //根据schema生成model
 const model = {
     User: mongoose.model('User', userSchema),
     Admin: mongoose.model('Admin', adminSchema),
     Message: mongoose.model('Message',messageSchema),
+    BBS:mongoose.model('BBS',bbsSchema),
+    Video:mongoose.model('Video',videoScheme)
 };
 
 module.exports = model;

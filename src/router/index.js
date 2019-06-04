@@ -5,6 +5,7 @@ import iView from 'iview';
 import 'iview/dist/styles/iview.css'
 //head
 import upload from '@/components/header/upload'
+import upload2 from '@/components/header/upload2'
 import register from '@/components/header/register'
 import userinfor from '@/components/header/userinfor'
 import messinfor from '@/components/header/messinfor'
@@ -24,6 +25,7 @@ import adminlogin from '@/components/select/login/adminlogin'
 //播放
 import bofang from '@/components/bofang/bofang'
 import sidebofang from '@/components/bofang/sidebofang'
+import uploadbofang from '@/components/bofang/uploadbofang'
 
 import VueVideoPlayer from 'vue-video-player'
 import 'video.js/dist/video-js.css'
@@ -133,6 +135,16 @@ const router = new Router({
 			path: '/collect',
 			name: 'collect',
 			component: collect
+		},
+		{
+			path: '/uploadbofang',
+			name: 'uploadbofang',
+			component: uploadbofang
+		},
+		{
+			path: '/upload2',
+			name: 'upload2',
+			component: upload2,
 		},
 	],
 });

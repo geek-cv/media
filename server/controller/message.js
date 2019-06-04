@@ -1,6 +1,7 @@
 const Message = require('../db.js').Message;
 const  moment = require('moment');
-
+const db = require('monk')('localhost/media');
+const messages = db.get('messages');
 
 //数据库操作
 //新增评论
@@ -47,7 +48,19 @@ const getAllMess = async(ctx) => {
   };
 };
 
+const removeMess = async(ctx) => {
+  //删除对应的评论
+   let {messname,message} = ctx.request.body
+
+    await messages.remove({"messname":messname,"message":message})
+  ctx.status = 200;
+  ctx.body = {
+    success: true
+  }
+};
+
 module.exports = {
     addMess,
     getAllMess,
+    removeMess
 }

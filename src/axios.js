@@ -50,11 +50,14 @@ export default {
   },
 	//获取用户
   getUser() {
-    return instance.get('/api/user');
+    return instance.get('/api/getAlluser');
+  },
+  getUsers() {
+    return instance.get('/api/getUsers');
   },
   //删除用户
-  delUser(data) {
-    return instance.post('/api/delUser', data);
+  delUsers(data) {
+    return instance.post('/api/delUsers', data);
   },
   //新增评论
   addMess(data){
@@ -63,6 +66,9 @@ export default {
   //显示评论
   getAllMess(){
     return instance.get('/api/getAllMess')
+  },
+  removeMess(data){
+    return instance.post('/api/removeMess',data)
   },
   //收藏
   //管理员登录
