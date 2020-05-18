@@ -71,6 +71,9 @@ export default {
     return instance.post('/api/removeMess',data)
   },
   //收藏
+  addCollect(data) {
+    return instance.post('/api/addCollect', data)
+  },
   //管理员登录
   adminLogin(data){
     return axios.post('/api/adminlogin', data);  

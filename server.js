@@ -43,6 +43,7 @@ const uploadRouter = new Router();
 uploadRouter.post('/upload', async (ctx, next) => {
   // 上传单个文件
   const file = ctx.request.files.file; // 获取上传文件
+
  
   // 创建可读流
   const reader = fs.createReadStream(file.path);
@@ -58,7 +59,8 @@ uploadRouter.post('/upload', async (ctx, next) => {
 const UserController = require('./server/controller/user.js');
 const AdminController = require('./server/controller/admin.js');
 const MessController = require('./server/controller/message.js');
-const BBSController = require('./server/controller/bbs.js')
+const BBSController = require('./server/controller/bbs.js');
+const CollectController = require('./server/controller/collect.js')
 
 //checkToken作为中间件存在
 const checkToken = require('./server/token/checkToken.js');
@@ -81,6 +83,12 @@ adminregisterRouter.post('/adminregister', AdminController.adminReg);
 //新增收藏
 const addCollectRouter = new Router();
 addCollectRouter.post('/addCollect',  UserController.addCollect);
+//新增collect收藏
+const addCollectsRouter = new Router();
+addCollectsRouter.post('./addCollects',CollectController.addCollects)
+//显示所有收藏
+// const findAllCollectRouter = new Router();
+// findAllCollectRouter.get('/findAllCollect',  UserController.findAllCollect);
 
 //新增评论
 const addMessRouter = new Router();
@@ -106,12 +114,18 @@ router.use('/api',loginRouter.routes(),loginRouter.allowedMethods());
 router.use('/api',registerRouter.routes(),registerRouter.allowedMethods());
 router.use('/api',userRouter.routes(),userRouter.allowedMethods());
 
+//装载收藏
 router.use('/api',addCollectRouter.routes(),addCollectRouter.allowedMethods());
+//router.use('/api',findAllCollectRouter.routes(),findAllCollectRouter.allowedMethods());
+//装载新增collect收藏
+router.use('/api',addCollectsRouter.routes(),addCollectsRouter.allowedMethods());
 //装载管理员路由
 router.use('/api',adminloginRouter.routes(),adminloginRouter.allowedMethods());
 router.use('/api',adminregisterRouter.routes(),adminregisterRouter.allowedMethods());
+
 //文件上传
 router.use('/api', uploadRouter.routes(), uploadRouter.allowedMethods());
+
 //装载评论
 router.use('/api', addMessRouter.routes(), addMessRouter.allowedMethods());
 router.use('/api', getAllMessRouter.routes(), getAllMessRouter.allowedMethods());

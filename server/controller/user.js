@@ -149,8 +149,8 @@ const DelUser = async(ctx) => {
 //新增收藏
 const addCollect = async(ctx) => {
   let user = new User({
-    username: ctx.request.body.name,
-    video_name: ctx.request.body.videoname,
+    username: ctx.request.body.username,
+    video_name: ctx.request.body.video_url,
   });
   await new Promise((resolve, reject) => {
     user.save((err) => {
@@ -166,8 +166,17 @@ const addCollect = async(ctx) => {
       success: true
     }
 };
-
-
+//获得收藏信息
+const findAllCollect = () =>{
+  return new Promise((resolve,reject) =>{
+    User.find({},(err,doc) =>{
+      if(err){
+        reject(err);
+      }
+      resolve(doc);
+    });
+  });
+};
 
 const getUsers = async(ctx) => {
 

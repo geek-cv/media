@@ -47,6 +47,11 @@ const bbsSchema = mongoose.Schema({
 const videoScheme = mongoose.Schema({
     video_name:String,
     video_url:String
+});
+//收藏
+const collectScheme = mongoose.Schema({
+    username:String,
+    video_name:String
 })
 //根据schema生成model
 const model = {
@@ -54,7 +59,8 @@ const model = {
     Admin: mongoose.model('Admin', adminSchema),
     Message: mongoose.model('Message',messageSchema),
     BBS:mongoose.model('BBS',bbsSchema),
-    Video:mongoose.model('Video',videoScheme)
+    Video:mongoose.model('Video',videoScheme),
+    //Collect:mongoose.model('Collect',collectScheme)
 };
 
 module.exports = model;

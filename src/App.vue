@@ -48,17 +48,12 @@
               <Icon type="ios-navigate"></Icon>上传
             </router-link>
           </MenuItem>
-          <MenuItem name="4">
-            <router-link to="/upload2">
-              <Icon type="ios-navigate"></Icon>上传2
-            </router-link>
-          </MenuItem>
-           <MenuItem name="5">
+           <MenuItem name="4">
             <router-link to="/collect">
               <Icon type="ios-navigate"></Icon>收藏
             </router-link>
           </MenuItem>
-          <MenuItem name="6"></MenuItem>
+          <MenuItem name="5"></MenuItem>
           <el-button @click="logout()">退出登录</el-button>
         </Menu>
       </div>

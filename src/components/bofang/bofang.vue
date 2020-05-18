@@ -150,8 +150,8 @@ export default {
     },
     collect() {
       let data3 = {
-        name: window.sessionStorage.getItem("username"),
-        videoname: window.localStorage.getItem("video_url")
+        username: window.sessionStorage.getItem("username"),
+        video_url: window.localStorage.getItem("video_url")
       };
       axios
         .addCollect(data3)
